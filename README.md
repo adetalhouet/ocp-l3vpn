@@ -352,3 +352,8 @@ rtt min/avg/max/mdev = 0.994/1.129/1.200/0.075 ms
 
 #### Site 2 client validation
 ![Site 2](https://raw.githubusercontent.com/adetalhouet/ocp-l3vpn/main/docs/r2-client.png)
+
+### Links
+
+[Multus CNI usage guide](https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md)
+[Configuring a bridge network](https://docs.openshift.com/container-platform/4.8/networking/multiple_networks/configuring-bridge.html)
