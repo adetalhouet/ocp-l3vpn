@@ -1,0 +1,17 @@
+apiVersion: nmstate.io/v1alpha1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: r3-to-r4
+spec:
+  desiredState:
+    interfaces:
+      - name: r3-to-r4
+        description: Linux bridge r3-to-r4
+        type: linux-bridge
+        state: up
+        ipv4:
+          enabled: false
+        bridge:
+          options:
+            stp:
+              enabled: false

@@ -1,0 +1,10 @@
+apiVersion: nmstate.io/v1alpha1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: remove-brwan
+spec:
+  desiredState:
+    interfaces:
+      - name: brwan
+        type: linux-bridge
+        state: absent

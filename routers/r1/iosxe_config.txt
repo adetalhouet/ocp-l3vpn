@@ -1,0 +1,33 @@
+hostname r1
+!
+username lab privilege 15 password lab
+ip domain-name hetzner.sandbox1091.opentlc.com
+crypto key generate rsa modulus 2048
+!
+interface GigabitEthernet1
+ip address 10.0.2.21 255.255.255.0
+no ip address dhcp
+no shut
+exit
+interface GigabitEthernet2
+ip address 192.168.1.2 255.255.255.0
+no shut
+exit
+!
+router bgp 65000
+bgp router-id 10.0.2.21
+neighbor 10.0.2.22 remote-as 65000
+redistribute connected
+exit
+!
+no ip forward-protocol nd
+no ip http server
+no ip http secure-server
+no ip tftp source-interface GigabitEthernet1
+!
+ip route 10.0.2.0 255.255.255.0 10.0.2.1
+ip route 192.168.1.0 255.255.255.0 192.168.1.1
+!
+line vty 0 4
+login local
+exit

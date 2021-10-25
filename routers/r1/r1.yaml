@@ -1,0 +1,88 @@
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachine
+metadata:
+  annotations:
+    kubevirt.io/latest-observed-api-version: v1alpha3
+    kubevirt.io/storage-observed-api-version: v1alpha3
+  name: r1
+  labels:
+    app: r1
+    os.template.kubevirt.io/rhel7.9: "true"
+    vm.kubevirt.io/template.namespace: openshift
+    vm.kubevirt.io/template.revision: "1"
+    vm.kubevirt.io/template.version: v0.11.3
+    workload.template.kubevirt.io/server: "true"
+spec:
+  dataVolumeTemplates:
+    - metadata:
+        name: r1-rootdisk
+      spec:
+        pvc:
+          accessModes:
+            - ReadWriteMany
+          storageClassName: ocs-storagecluster-ceph-rbd
+          resources:
+            requests:
+              storage: 20Gi
+          volumeMode: Block
+        source:
+          pvc:
+            namespace: default
+            name: csr1kv-qcow2
+  running: true
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        kubevirt.io/domain: r1
+        kubevirt.io/size: large
+        os.template.kubevirt.io/rhel7.9: "true"
+        vm.kubevirt.io/name: r1
+        workload.template.kubevirt.io/server: "true"
+    spec:
+      domain:
+        cpu:
+          cores: 4
+        devices:
+          autoattachPodInterface: false
+          disks:
+            - bootOrder: 1
+              disk:
+                bus: virtio
+              name: rootdisk
+            - cdrom:
+                bus: scsi
+              name: config
+          interfaces:
+            - bridge: {}
+              macAddress: "52:54:09:00:01:02"
+              model: virtio
+              name: nic-1
+            - bridge: {}
+              macAddress: "52:54:09:00:01:03"
+              model: virtio
+              name: nic-2
+          networkInterfaceMultiqueue: true
+          rng: {}
+        machine:
+          type: pc-q35-rhel8.2.0
+        resources:
+          requests:
+            memory: 8Gi
+      evictionStrategy: LiveMigrate
+      hostname: r1
+      networks:
+        - multus:
+            networkName: wan
+          name: nic-1
+        - multus:
+            networkName: r1
+          name: nic-2
+      terminationGracePeriodSeconds: 10
+      volumes:
+        - dataVolume:
+            name: r1-rootdisk
+          name: rootdisk
+        - name: config
+          persistentVolumeClaim:
+            claimName: r1-config

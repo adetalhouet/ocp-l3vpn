@@ -1,0 +1,22 @@
+apiVersion: nmstate.io/v1beta1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: brwan
+spec:
+  nodeSelector: 
+    adetalhouet-network/wan: "true"
+  desiredState:
+    interfaces:
+      - name: brwan
+        description: Linux bridge for WAN connectivity
+        type: linux-bridge
+        state: up
+        ipv4:
+          enabled: true
+          dhcp: true
+        bridge:
+          options:
+            stp:
+              enabled: true
+          port:
+            - name: enp7s0

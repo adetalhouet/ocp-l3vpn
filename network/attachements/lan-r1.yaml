@@ -1,0 +1,9 @@
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  annotations:
+    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/brlan-r1
+  name: lan-r1
+spec:
+  config: >-
+    {"name":"lan-r1","cniVersion":"0.3.1","plugins":[{"type":"cnv-bridge","bridge":"brlan-r1","ipam":{"type":"whereabouts","range":"192.168.1.0/24","exclude":["192.168.1.0/27"],"routes":[{"dst":"192.168.2.0/24","gw":"192.168.1.2"}]}},{"type":"cnv-tuning"}]}

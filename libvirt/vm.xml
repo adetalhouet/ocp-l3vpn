@@ -1,0 +1,14 @@
+virt-install \
+--connect=qemu:///system \
+--name=csr \
+--os-type=linux \
+--os-variant=rhel4 \
+--arch=x86_64 \
+--cpu host \
+--vcpus=4 \
+--hvm \
+--ram=80192 \
+--import \
+--disk path=/var/lib/libvirt/images/csr1000v-universalk9.16.09.05-serial.qcow2,format=qcow2 \
+--disk path=/var/lib/libvirt/images/config.iso,device=cdrom \
+--network network=default
