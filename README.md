@@ -12,13 +12,16 @@ The workers are deployed using libvirt and using virtual networks.
 For the current lab, we will build two customer sites, each one fronted by a router. The goal will be to have BGP advertising the other site's routes, so client in site 1 can reach client in site 2.
 
 See here the high-level design showing the two routes along with clients for the respective sites.
-![High level architecture](https://raw.githubusercontent.com/adetalhouet/ocp-virt-l3vpn/master/docs/high-level-arch.png)
+
+![High level architecture](https://raw.githubusercontent.com/adetalhouet/ocp-virt-l3vpn/main/docs/high-level-arch.png)
 
 Below is the low-level design showing all the network interaction within the server, up to the VM and POD within OpenShift.
-![Low level architecture](https://raw.githubusercontent.com/adetalhouet/ocp-virt-l3vpn/master/docs/low-level-arch.png)
+
+![Low level architecture](https://raw.githubusercontent.com/adetalhouet/ocp-virt-l3vpn/main/docs/low-level-arch.png)
 
 Finally, from an OpenShift standpoint, using the developer view, this is what you could observed.
-![Developer view](https://raw.githubusercontent.com/adetalhouet/ocp-virt-l3vpn/master/docs/openshift-developer-visualization.png)
+
+![Developer view](https://raw.githubusercontent.com/adetalhouet/ocp-virt-l3vpn/main/docs/openshift-developer-visualization.png)
 
 ### Label the nodes
 
@@ -345,7 +348,7 @@ rtt min/avg/max/mdev = 0.994/1.129/1.200/0.075 ms
 ~~~
 
 #### Site 1 client validation
-![Site 1](https://raw.githubusercontent.com/adetalhouet/ocp-virt-l3vpn/master/docs/r1-client.png)
+![Site 1](https://raw.githubusercontent.com/adetalhouet/ocp-virt-l3vpn/main/docs/r1-client.png)
 
 #### Site 2 client validation
-![Site 2](https://raw.githubusercontent.com/adetalhouet/ocp-virt-l3vpn/master/docs/r2-client.png)
+![Site 2](https://raw.githubusercontent.com/adetalhouet/ocp-virt-l3vpn/main/docs/r2-client.png)
