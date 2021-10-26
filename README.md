@@ -1,4 +1,4 @@
-# L3VPN lab using OpenShift Virtualization and Cisco CSR100KV
+# L3VPN lab using OpenShift Virtualization and Cisco CSR1KV
 
 The end goal is to setup an L3VPN between two sites, each site actually being a K8S worker node.
 
