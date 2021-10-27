@@ -2,6 +2,8 @@
 
 The end goal is to setup an L3VPN between two sites, each site actually being a K8S worker node.
 
+The environment used to build this is described [here](https://github.com/adetalhouet/lab)
+
 ## Part 1 - BGP
 
 For this first iteration, we will setup BGP between two routers - each router can be seen as a CE; the topology won't have PE and P for now.
