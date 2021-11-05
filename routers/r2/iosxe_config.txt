@@ -5,18 +5,26 @@ ip domain-name hetzner.sandbox1091.opentlc.com
 crypto key generate rsa modulus 2048
 !
 interface GigabitEthernet1
-ip address 10.0.2.22 255.255.255.0
+description "POD network"
+ip address 10.0.2.2 255.255.255.0
 no ip address dhcp
 no shut
 exit
 interface GigabitEthernet2
+ip address 10.10.10.22 255.255.255.0
+description "WAN network"
+no ip address dhcp
+no shut
+exit
+interface GigabitEthernet3
 ip address 192.168.2.2 255.255.255.0
+description "LAN network"
 no shut
 exit
 !
 router bgp 65000
-bgp router-id 10.0.2.22
-neighbor 10.0.2.21 remote-as 65000
+bgp router-id 10.10.10.22
+neighbor 10.10.10.21 remote-as 65000
 redistribute connected
 exit
 !
@@ -25,8 +33,9 @@ no ip http server
 no ip http secure-server
 no ip tftp source-interface GigabitEthernet1
 !
-ip route 10.0.2.0 255.255.255.0 10.0.2.1
-ip route 192.168.2.0 255.255.255.0 192.168.2.1
+ip route 0.0.0.0 0.0.0.0 10.0.2.1
+ip route 10.10.10.0 255.255.255.0 10.10.10.1
+ip route 192.168.2.0 255.255.255.0 192.168.1.1
 !
 line vty 0 4
 login local

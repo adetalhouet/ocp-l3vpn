@@ -54,6 +54,9 @@ spec:
                 bus: scsi
               name: config
           interfaces:
+            - masquerade: {}
+              macAddress: "52:54:09:00:01:01"
+              name: nic-0
             - bridge: {}
               macAddress: "52:54:09:00:01:02"
               model: virtio
@@ -72,6 +75,8 @@ spec:
       evictionStrategy: LiveMigrate
       hostname: r1
       networks:
+        - pod: {}
+          name: nic-0
         - multus:
             networkName: wan
           name: nic-1

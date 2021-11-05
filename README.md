@@ -13,7 +13,7 @@ The workers are deployed using libvirt and using virtual networks.
 
 For the current lab, we will build two customer sites, each one fronted by a router. The goal will be to have BGP advertising the other site's routes, so client in site 1 can reach client in site 2.
 
-See here the high-level design showing the two routes along with clients for the respective sites.
+See here the high-level design showing the two sites along with clients for the respective sites.
 
 ![High level architecture](https://raw.githubusercontent.com/adetalhouet/ocp-l3vpn/main/docs/high-level-arch.png)
 
@@ -78,6 +78,12 @@ virsh attach-interface --domain worker6 --type network --source lan-r2 --model v
 ~~~
 
 In both cases, the WAN port will be `enp7s0` and the LAN port will be `enp8s0`.
+
+To detach the interface, the following command can be used
+
+~~~
+virsh detach-interface --domain worker6 --type network --mac 52:54:00:0b:8a:17
+~~~
 
 ### Create the WAN and LAN bridge interfaces on the workers
 

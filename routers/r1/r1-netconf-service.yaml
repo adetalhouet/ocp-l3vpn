@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: r1-netconf-service
+  namespace: default
+spec:
+  ports:
+    - protocol: TCP
+      targetPort: 830
+  type: NodePort
+  selector:
+    kubevirt.io/domain: r1
+    os.template.kubevirt.io/rhel7.9: 'true'
+    vm.kubevirt.io/name: r1
+    workload.template.kubevirt.io/server: 'true'

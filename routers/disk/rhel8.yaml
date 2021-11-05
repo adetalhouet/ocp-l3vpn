@@ -1,0 +1,18 @@
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: rhel8
+  namespace: openshift-virtualization-os-images
+spec:
+  pvc:
+    accessModes:
+      - ReadWriteMany
+    resources:
+      requests:
+        storage: 50Gi
+    storageClassName: ocs-storagecluster-ceph-rbd
+    volumeMode: Block
+  source:
+    http:
+      url: >-
+        https://access.cdn.redhat.com/content/origin/files/sha256/df/df9660e770711f797b311a04946ce45db19843ddb1c60ccadca8b77fa0444e4f/rhel-8.4-x86_64-kvm.qcow2?user=4a3d5c269a084e024137859cd9715aa5&_auth_=1636006022_0342e6c6dd1dda46ee22035854838179
