@@ -6,6 +6,7 @@ metadata:
 spec:
   ports:
     - protocol: TCP
+      port: 22001
       targetPort: 830
   type: NodePort
   selector:

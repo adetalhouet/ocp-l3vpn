@@ -29,6 +29,9 @@ neighbor 10.10.10.22 remote-as 65000
 redistribute connected
 exit
 !
+netconf-yang feature candidate-datastore
+netconf-yang
+!
 no ip forward-protocol nd
 no ip http server
 no ip http secure-server
