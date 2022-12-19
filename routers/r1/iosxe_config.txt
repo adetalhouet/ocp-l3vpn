@@ -17,7 +17,7 @@ no ip address dhcp
 no shut
 exit
 interface GigabitEthernet3
-ip address 192.168.1.2 255.255.255.0
+ip address 192.168.10.2 255.255.255.0
 description "LAN network"
 no ip address dhcp
 no shut
@@ -40,7 +40,7 @@ ip ssh server authenticate user
 !
 ip route 10.128.0.0 255.252.0.0 10.0.2.1
 ip route 10.10.10.0 255.255.255.0 10.10.10.1
-ip route 192.168.1.0 255.255.255.0 192.168.1.1
+ip route 192.168.10.0 255.255.255.0 192.168.10.1
 !
 line vty 0 4
 login local
