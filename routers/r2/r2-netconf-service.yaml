@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: r1-netconf-service
+  name: r2-netconf-service
   namespace: default
 spec:
   ports:
@@ -10,4 +10,4 @@ spec:
       targetPort: 830
   type: NodePort
   selector:
-    kubevirt.io/domain: r1
+    kubevirt.io/domain: r2
